@@ -170,6 +170,7 @@ export default class ImageAttachmentsLightbox extends Component {
   };
 
   onClose = () => {
+    console.log('onClose', new Date().toISOString());
     if (isiOSChrome) {
       pinnedElements.capture();
       this.pinnedEls = [...pinnedElements];
@@ -178,9 +179,13 @@ export default class ImageAttachmentsLightbox extends Component {
   };
 
   onDestroy = () => {
+    console.log('onDestroy', new Date().toISOString());
     this.props.onDestroy();
     if (isiOSChrome) {
-      const h = () => unscrollTo(this.pinnedEls);
+      const h = () => {
+        console.log('unscrollTo', new Date().toISOString());
+        unscrollTo(this.pinnedEls);
+      };
       window.addEventListener('scroll', h, { once: true });
       setTimeout(() => window.removeEventListener('scroll', h), 500);
     }
@@ -203,6 +208,7 @@ export default class ImageAttachmentsLightbox extends Component {
         destroy={this.onDestroy}
         close={this.onClose}
         afterChange={this.afterChange}
+        hideAnimationDuration={0}
       />
     );
   }

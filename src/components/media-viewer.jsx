@@ -12,7 +12,7 @@ import {
 } from './link-preview/instagram';
 
 const ImageAttachmentsLightbox = lazyComponent(
-  () => import('./post/post-attachment-image-lightbox'),
+  () => import('./post/post-attachment-image-lightbox-v2'),
   {
     fallback: (
       <div className="lightbox-loading">
